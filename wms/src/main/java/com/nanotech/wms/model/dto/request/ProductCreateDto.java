@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Positive;
 import java.util.UUID;
 
 public record ProductCreateDto(
+
         @NotNull(message = "Product name can not be null")
         @NotBlank(message = "Product name can not be blank")
         String name,
@@ -15,7 +16,10 @@ public record ProductCreateDto(
         @Positive(message = "Price name can not be negative")
         Double price,
 
+        @NotNull(message = "Product amount can not be null")
+        @Positive(message = "Product amount can not be negative")
+        Long amount,
+
         @NotNull(message = "organizationId can not be null")
-        @Positive(message = "organizationId can not be negative")
-        UUID organizationId
+        UUID warehouseId
 ) { }

@@ -4,6 +4,7 @@ import com.nanotech.wms.exception.CustomNotFoundException;
 import com.nanotech.wms.mapper.WarehouseMapper;
 import com.nanotech.wms.model.dto.request.WarehouseCreateDto;
 import com.nanotech.wms.model.dto.response.WarehouseResponseDto;
+import com.nanotech.wms.model.entity.User;
 import com.nanotech.wms.model.entity.Warehouse;
 import com.nanotech.wms.repository.WarehouseRepository;
 import com.nanotech.wms.service.WarehouseService;
@@ -21,8 +22,9 @@ public class WarehouseServiceImpl implements WarehouseService {
     private final WarehouseMapper warehouseMapper;
 
     @Override
-    public void create(WarehouseCreateDto dto) {
+    public void create(WarehouseCreateDto dto, User user) {
         Warehouse entity = warehouseMapper.toEntity(dto);
+        entity.setCreatedBy(user);
         warehouseRepository.save(entity);
     }
 

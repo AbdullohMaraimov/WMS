@@ -5,6 +5,7 @@ import com.nanotech.wms.mapper.OrganizationMapper;
 import com.nanotech.wms.model.dto.request.OrganizationCreateDto;
 import com.nanotech.wms.model.dto.response.OrganizationResponseDto;
 import com.nanotech.wms.model.entity.Organization;
+import com.nanotech.wms.model.entity.User;
 import com.nanotech.wms.repository.OrganizationRepository;
 import com.nanotech.wms.service.OrganizationService;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     private final OrganizationMapper organizationMapper;
 
     @Override
-    public void create(OrganizationCreateDto dto) {
+    public void create(OrganizationCreateDto dto, User user) {
         Organization organization = organizationMapper.toEntity(dto);
+        organization.setCreatedBy(user);
         organizationRepository.save(organization);
     }
 

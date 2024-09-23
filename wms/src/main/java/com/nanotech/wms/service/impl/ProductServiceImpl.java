@@ -4,8 +4,8 @@ import com.nanotech.wms.exception.CustomNotFoundException;
 import com.nanotech.wms.mapper.ProductMapper;
 import com.nanotech.wms.model.dto.request.ProductCreateDto;
 import com.nanotech.wms.model.dto.response.ProductResponseDto;
-import com.nanotech.wms.model.entity.Organization;
 import com.nanotech.wms.model.entity.Product;
+import com.nanotech.wms.model.entity.User;
 import com.nanotech.wms.repository.ProductRepository;
 import com.nanotech.wms.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,9 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper;
 
     @Override
-    public void create(ProductCreateDto dto) {
+    public void create(ProductCreateDto dto, User user) {
         Product product = productMapper.toEntity(dto);
+        product.setCreatedBy(user);
         productRepository.save(product);
     }
 

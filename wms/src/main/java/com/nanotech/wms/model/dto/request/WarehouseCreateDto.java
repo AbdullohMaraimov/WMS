@@ -11,5 +11,5 @@ public record WarehouseCreateDto(
         String name,
 
         @NotNull(message = "OrganizationId cant be null")
-        UUID OrganizationId
+        UUID organizationId
 ) { }

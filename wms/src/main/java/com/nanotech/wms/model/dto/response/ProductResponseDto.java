@@ -5,5 +5,6 @@ import java.util.UUID;
 public record ProductResponseDto(
         String name,
         Double price,
-        UUID organizationId
+        Long amount,
+        UUID warehouseId
 ) { }

@@ -4,7 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "cs_income_products")
 public class IncomeProduct extends BaseEntity{
@@ -15,8 +19,8 @@ public class IncomeProduct extends BaseEntity{
     private Double total;
 
     @ManyToOne
-    @JoinColumn(name = "org_id")
-    private Organization organization;
+    @JoinColumn(name = "warehouse_id")
+    private Warehouse warehouse;
 
     @ManyToOne
     @JoinColumn(name = "invoice_id")

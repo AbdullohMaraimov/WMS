@@ -3,9 +3,9 @@ package com.nanotech.wms.mapper;
 import com.nanotech.wms.exception.CustomNotFoundException;
 import com.nanotech.wms.model.dto.request.ProductCreateDto;
 import com.nanotech.wms.model.dto.response.ProductResponseDto;
-import com.nanotech.wms.model.entity.Organization;
 import com.nanotech.wms.model.entity.Product;
-import com.nanotech.wms.repository.OrganizationRepository;
+import com.nanotech.wms.model.entity.Warehouse;
+import com.nanotech.wms.repository.WarehouseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -16,15 +16,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductMapper {
 
-    private final OrganizationRepository organizationRepository;
+    private final WarehouseRepository warehouseRepository;
 
     public Product toEntity(ProductCreateDto dto) {
-        Organization organization = organizationRepository.findById(dto.organizationId())
-                .orElseThrow(() -> new CustomNotFoundException("Organization with id %s not found".formatted(dto.organizationId())));
+        Warehouse warehouse = warehouseRepository.findById(dto.warehouseId())
+                .orElseThrow(() -> new CustomNotFoundException("Organization with id %s not found".formatted(dto.warehouseId())));
+
         Product product = new Product();
         product.setName(dto.name());
         product.setPrice(dto.price());
-        product.setOrganization(organization);
+        product.setAmount(dto.amount());
+        product.setWarehouse(warehouse);
         return product;
     }
 
@@ -32,7 +34,8 @@ public class ProductMapper {
         return new ProductResponseDto(
                 product.getName(),
                 product.getPrice(),
-                product.getOrganization().getId()
+                product.getAmount(),
+                product.getWarehouse().getId()
         );
     }
 
@@ -45,11 +48,12 @@ public class ProductMapper {
     }
 
     public Product toUpdatedEntity(Product product, ProductCreateDto dto) {
-        Organization organization = organizationRepository.findById(dto.organizationId())
-                .orElseThrow(() -> new CustomNotFoundException("Organization with id %s not found".formatted(dto.organizationId())));
+        Warehouse warehouse = warehouseRepository.findById(dto.warehouseId())
+                .orElseThrow(() -> new CustomNotFoundException("Organization with id %s not found".formatted(dto.warehouseId())));
         product.setName(dto.name());
         product.setPrice(dto.price());
-        product.setOrganization(organization);
+        product.setAmount(dto.amount());
+        product.setWarehouse(warehouse);
         return product;
     }
 }

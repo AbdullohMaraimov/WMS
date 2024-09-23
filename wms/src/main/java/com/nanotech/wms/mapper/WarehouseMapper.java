@@ -21,8 +21,8 @@ public class WarehouseMapper {
     private final OrganizationRepository organizationRepository;
 
     public Warehouse toEntity(WarehouseCreateDto dto) {
-        Organization organization = organizationRepository.findById(dto.OrganizationId())
-                .orElseThrow(() -> new CustomNotFoundException("Organization not found with id %s".formatted(dto.OrganizationId())));
+        Organization organization = organizationRepository.findById(dto.organizationId())
+                .orElseThrow(() -> new CustomNotFoundException("Organization not found with id %s".formatted(dto.organizationId().toString())));
 
         Warehouse warehouse = new Warehouse();
         warehouse.setOrganization(organization);
@@ -46,8 +46,8 @@ public class WarehouseMapper {
     }
 
     public Warehouse toUpdatedEntity(Warehouse warehouse, WarehouseCreateDto dto) {
-        Organization organization = organizationRepository.findById(dto.OrganizationId())
-                .orElseThrow(() -> new CustomNotFoundException("Organization not found with id %s".formatted(dto.OrganizationId())));
+        Organization organization = organizationRepository.findById(dto.organizationId())
+                .orElseThrow(() -> new CustomNotFoundException("Organization not found with id %s".formatted(dto.organizationId())));
 
         warehouse.setName(dto.name());
         warehouse.setOrganization(organization);

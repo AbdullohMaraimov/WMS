@@ -1,6 +1,7 @@
 package com.nanotech.wms.service.impl;
 
 import com.nanotech.wms.exception.CustomNotFoundException;
+import com.nanotech.wms.exception.CustomUsernameAlreadyExistsException;
 import com.nanotech.wms.mapper.UserMapper;
 import com.nanotech.wms.model.dto.request.UserRegisterRequest;
 import com.nanotech.wms.model.dto.response.UserResponse;
@@ -16,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -27,14 +29,19 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public void create(UserRegisterRequest dto) throws IOException {
-        User user = userMapper.toEntity(dto);
-        if (!dto.photo().isEmpty()) {
-            String photoPath = savePhoto(dto.photo());
-            user.setMainPhoto(photoPath);
-        }
+    public void create(UserRegisterRequest dto, MultipartFile photo) throws IOException {
+        Optional<User> byUsername = userRepository.findByUsername(dto.username());
 
-        userRepository.save(user);
+        if (byUsername.isEmpty()) {
+            User user = userMapper.toEntity(dto);
+            if (!photo.isEmpty()) {
+                String photoPath = savePhoto(photo);
+                user.setMainPhoto(photoPath);
+            }
+            userRepository.save(user);
+        } else {
+            throw new CustomUsernameAlreadyExistsException("Username already taken, please use different username");
+        }
     }
 
     @Override
@@ -61,10 +68,7 @@ public class UserServiceImpl implements UserService {
         if (user.getMainPhoto() != null && !user.getMainPhoto().isEmpty()) {
             deleteOldPhoto(newUser.getMainPhoto());
         }
-        if (!dto.photo().isEmpty()) {
-            String photoPath = savePhoto(dto.photo());
-            newUser.setMainPhoto(photoPath);
-        }
+
         userRepository.save(newUser);
     }
 

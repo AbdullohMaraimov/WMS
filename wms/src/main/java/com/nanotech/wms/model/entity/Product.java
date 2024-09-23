@@ -15,9 +15,10 @@ public class Product extends BaseEntity{
 
     private String name;
     private Double price;
+    private Long amount;
 
     @ManyToOne
-    @JoinColumn(name = "org_id")
-    private Organization organization;
+    @JoinColumn(name = "warehouse_id")
+    private Warehouse warehouse;
 
 }
