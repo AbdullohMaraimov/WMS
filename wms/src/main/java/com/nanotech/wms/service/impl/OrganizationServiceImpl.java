@@ -42,7 +42,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public void update(Organization organization, OrganizationCreateDto dto) {
+    public void update(UUID uuid, OrganizationCreateDto dto) {
+        Organization organization = organizationRepository.findById(uuid)
+                .orElseThrow(() -> new CustomNotFoundException("Organization not found"));
         Organization newOrg = organizationMapper.toUpdatedEntity(organization, dto);
         organizationRepository.save(newOrg);
     }

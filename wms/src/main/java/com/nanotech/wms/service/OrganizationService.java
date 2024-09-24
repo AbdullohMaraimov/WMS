@@ -16,7 +16,7 @@ public interface OrganizationService {
 
     List<OrganizationResponseDto> findAll();
 
-    void update(Organization organization, OrganizationCreateDto dto);
+    void update(UUID organizationId, OrganizationCreateDto dto);
 
     void deleteById(UUID id);
 
