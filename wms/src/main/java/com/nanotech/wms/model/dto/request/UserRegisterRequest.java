@@ -16,5 +16,7 @@ public record UserRegisterRequest(
         String password,
 
         @Email
-        String email
+        String email,
+
+        MultipartFile profileImage
 ) { }

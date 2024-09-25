@@ -22,7 +22,7 @@ public class UserMapper {
     public UserResponse toResponse(User user) {
         return new UserResponse(
                 user.getUsername(),
-                user.getMainPhoto(),
+                user.getPhotoPath(),
                 user.getEmail()
         );
     }

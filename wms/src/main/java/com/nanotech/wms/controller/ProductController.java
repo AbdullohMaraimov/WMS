@@ -1,5 +1,6 @@
 package com.nanotech.wms.controller;
 
+import com.nanotech.wms.controller.documentation.ProductControllerDocumentation;
 import com.nanotech.wms.model.dto.request.ProductCreateDto;
 import com.nanotech.wms.model.dto.response.ProductResponseDto;
 import com.nanotech.wms.model.dto.response.ProductStockAmountDto;
@@ -20,7 +21,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/product")
 @RequiredArgsConstructor
-public class ProductController {
+public class ProductController implements ProductControllerDocumentation {
 
     private final ProductService productService;
 

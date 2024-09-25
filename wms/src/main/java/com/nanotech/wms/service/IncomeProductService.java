@@ -1,9 +1,7 @@
 package com.nanotech.wms.service;
 
 import com.nanotech.wms.model.dto.request.IncomeProductCreateDto;
-import com.nanotech.wms.model.dto.request.OutgoProductCreateDto;
 import com.nanotech.wms.model.dto.response.IncomeProductResponseDto;
-import com.nanotech.wms.model.dto.response.OutgoProductResponseDto;
 
 import java.util.List;
 import java.util.UUID;

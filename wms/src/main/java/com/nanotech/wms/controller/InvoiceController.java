@@ -1,5 +1,6 @@
 package com.nanotech.wms.controller;
 
+import com.nanotech.wms.controller.documentation.InvoiceControllerDocumentation;
 import com.nanotech.wms.model.dto.request.InvoiceCreateDto;
 import com.nanotech.wms.model.dto.response.InvoiceResponseDto;
 import com.nanotech.wms.model.entity.User;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/invoice")
 @RequiredArgsConstructor
-public class InvoiceController {
+public class InvoiceController implements InvoiceControllerDocumentation {
 
     private final InvoiceService invoiceService;
 

@@ -21,7 +21,7 @@ public class User extends BaseEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    private String mainPhoto;
+    private String photoPath;
 
     private String email;
 

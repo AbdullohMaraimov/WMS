@@ -1,5 +1,6 @@
 package com.nanotech.wms.controller;
 
+import com.nanotech.wms.controller.documentation.OrganizationControllerDocumentation;
 import com.nanotech.wms.model.dto.request.OrganizationCreateDto;
 import com.nanotech.wms.model.dto.response.OrganizationResponseDto;
 import com.nanotech.wms.model.entity.User;
@@ -17,7 +18,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/organization")
 @RequiredArgsConstructor
-public class OrganizationController {
+public class OrganizationController implements OrganizationControllerDocumentation {
 
     private final OrganizationService organizationService;
     private final OrganizationRepository organizationRepository;

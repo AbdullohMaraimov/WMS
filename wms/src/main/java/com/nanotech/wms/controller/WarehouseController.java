@@ -1,5 +1,6 @@
 package com.nanotech.wms.controller;
 
+import com.nanotech.wms.controller.documentation.WarehouseControllerDocumentation;
 import com.nanotech.wms.model.dto.request.WarehouseCreateDto;
 import com.nanotech.wms.model.dto.response.WarehouseResponseDto;
 import com.nanotech.wms.model.entity.User;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/warehouse")
 @RequiredArgsConstructor
-public class WarehouseController {
+public class WarehouseController implements WarehouseControllerDocumentation {
 
     private final WarehouseService warehouseService;
 

@@ -1,6 +1,8 @@
 package com.nanotech.wms.exception.handler;
 
+import com.nanotech.wms.exception.CustomInsufficientProductException;
 import com.nanotech.wms.exception.CustomNotFoundException;
+import com.nanotech.wms.exception.CustomUsernameAlreadyExistsException;
 import com.nanotech.wms.model.payload.ErrorResponse;
 import jakarta.persistence.NoResultException;
 import org.springframework.http.HttpStatus;
@@ -44,6 +46,28 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 "Bad Request",
+                ex.getMessage(),
+                request.getContextPath()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomUsernameAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleUserAlreadyExistException(NoResultException ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                "User already exists",
+                ex.getMessage(),
+                request.getContextPath()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomInsufficientProductException.class)
+    public ResponseEntity<ErrorResponse> handleInsufficientProductException(NoResultException ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                "Insufficient supply to satisfy demand",
                 ex.getMessage(),
                 request.getContextPath()
         );

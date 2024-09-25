@@ -21,13 +21,6 @@ public class AppConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
 
-//    @Bean
-//    public ObjectMapper objectMapper() {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.registerModule(new JavaTimeModule());
-//        return objectMapper;
-//    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         // todo i will change this before production
@@ -46,4 +39,5 @@ public class AppConfig {
     public AuthenticationManager authenticationManager() {
         return new ProviderManager(authenticationProvider());
     }
+
 }

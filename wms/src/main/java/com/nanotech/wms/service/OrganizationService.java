@@ -2,7 +2,6 @@ package com.nanotech.wms.service;
 
 import com.nanotech.wms.model.dto.request.OrganizationCreateDto;
 import com.nanotech.wms.model.dto.response.OrganizationResponseDto;
-import com.nanotech.wms.model.entity.Organization;
 import com.nanotech.wms.model.entity.User;
 
 import java.util.List;

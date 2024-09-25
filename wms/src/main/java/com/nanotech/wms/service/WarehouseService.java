@@ -1,8 +1,6 @@
 package com.nanotech.wms.service;
 
-import com.nanotech.wms.model.dto.request.ProductCreateDto;
 import com.nanotech.wms.model.dto.request.WarehouseCreateDto;
-import com.nanotech.wms.model.dto.response.ProductResponseDto;
 import com.nanotech.wms.model.dto.response.WarehouseResponseDto;
 import com.nanotech.wms.model.entity.User;
 

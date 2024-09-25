@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -25,8 +24,8 @@ public class AuthServiceImpl implements AuthService {
     private final UserService userService;
 
     @Override
-    public void register(UserRegisterRequest registerDto, MultipartFile photo) throws IOException {
-        userService.create(registerDto, photo);
+    public void register(UserRegisterRequest registerDto) throws IOException {
+        userService.create(registerDto);
     }
 
     @Override
